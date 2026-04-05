@@ -2,83 +2,493 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JOEX HIGH SCHOOL| Central</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>🎟️ Pens Down Festival 2026 | JOEX & KENNY PROMOTIONS</title>
+    <!-- Google Fonts + Font Awesome 6 (free icons) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body { background-color: #f8f9fa; }
-        .school-header { background: #003366; color: white; padding: 2rem 0; margin-bottom: 2rem; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a0f1e 0%, #0c1222 100%);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            position: relative;
+        }
+
+        /* background floating glow effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 20%;
+            left: -10%;
+            width: 70%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(255, 90, 200, 0.15), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            bottom: 0;
+            right: -5%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(0, 200, 255, 0.12), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* main ticket card */
+        .ticket-container {
+            max-width: 980px;
+            width: 100%;
+            background: transparent;
+            position: relative;
+            z-index: 2;
+            filter: drop-shadow(0 25px 40px rgba(0, 0, 0, 0.5));
+            transition: transform 0.2s ease;
+        }
+
+        .ticket-container:hover {
+            transform: scale(1.01);
+        }
+
+        .ticket {
+            background: #ffffff;
+            border-radius: 2rem;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            transition: all 0.3s;
+            backdrop-filter: blur(0px);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.5);
+        }
+
+        /* LEFT SECTION (main info) */
+        .ticket-left {
+            flex: 2;
+            padding: 2rem 1.8rem;
+            background: linear-gradient(135deg, #fff 0%, #fef9f0 100%);
+            position: relative;
+        }
+
+        /* right section */
+        .ticket-right {
+            flex: 1.2;
+            background: #fef7e8;
+            padding: 2rem 1.5rem;
+            border-left: 2px dashed #e2cba4;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* promoter brand */
+        .promoter-badge {
+            display: inline-block;
+            background: #1e1a2f;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #ffdf9c;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .event-title {
+            font-size: 2.1rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(125deg, #0a0f1e, #bd7b2e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .festival-sub {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #c25100;
+            background: #ffeedd;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            margin-bottom: 1.2rem;
+        }
+
+        .info-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.5rem 0 1.8rem 0;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: #2c2a2a;
+            font-weight: 500;
+        }
+
+        .info-row i {
+            width: 1.8rem;
+            font-size: 1.25rem;
+            color: #c25b1e;
+        }
+
+        .info-row strong {
+            font-weight: 700;
+            color: #1e1a2f;
+            min-width: 65px;
+        }
+
+        .lineup {
+            background: #f3eee3;
+            padding: 1rem 1rem;
+            border-radius: 1.2rem;
+            margin: 1.2rem 0 1rem;
+        }
+
+        .lineup p {
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+            color: #a14500;
+        }
+
+        .artist-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .artist-list span {
+            background: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            color: #281c0a;
+        }
+
+        .extra-note {
+            border-top: 1px solid #eddbbc;
+            margin-top: 1.2rem;
+            padding-top: 1rem;
+            font-size: 0.7rem;
+            color: #5c4b2e;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+        }
+
+        /* RIGHT SECTION STYLES */
+        .qr-wrapper {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            display: inline-block;
+            margin-bottom: 1.2rem;
+        }
+
+        .qr-code-img {
+            width: 130px;
+            height: 130px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .scan-text {
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: #e9e0cf;
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 50px;
+            margin-top: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .ticket-details {
+            width: 100%;
+            margin: 1rem 0;
+            text-align: left;
+            background: #fff6ea;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+        }
+
+        .ticket-details p {
+            font-size: 0.75rem;
+            margin: 0.4rem 0;
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+        }
+
+        .ticket-details .label {
+            color: #8b6942;
+        }
+
+        .ticket-details .value {
+            font-weight: 800;
+            color: #1f1b10;
+        }
+
+        .price-tag {
+            background: #1e1a2f;
+            color: #ffdeae;
+            padding: 0.4rem;
+            border-radius: 2rem;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1rem;
+            margin: 0.5rem 0;
+            width: 100%;
+        }
+
+        .gate-info {
+            font-size: 0.7rem;
+            background: #ffe3bf;
+            padding: 0.4rem;
+            border-radius: 20px;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* dotted perforation effect */
+        .ticket-right::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 20%;
+            width: 20px;
+            height: 60%;
+            background: radial-gradient(circle, #b38b40 2px, transparent 2px);
+            background-size: 12px 12px;
+            background-repeat: repeat-y;
+            pointer-events: none;
+        }
+
+        /* responsive */
+        @media (max-width: 760px) {
+            .ticket {
+                flex-direction: column;
+                border-radius: 1.5rem;
+            }
+            .ticket-right {
+                border-left: none;
+                border-top: 2px dashed #e2cba4;
+                padding: 1.8rem;
+            }
+            .ticket-right::before {
+                display: none;
+            }
+            .ticket-left {
+                padding: 1.8rem;
+            }
+            .event-title {
+                font-size: 1.7rem;
+            }
+        }
+
+        /* print style */
+        @media print {
+            body {
+                background: white;
+                padding: 0.2in;
+            }
+            .ticket-container {
+                box-shadow: none;
+            }
+            .ticket {
+                border: 1px solid #ccc;
+                break-inside: avoid;
+            }
+            .qr-code-img {
+                filter: grayscale(0.1);
+            }
+            body::before, body::after {
+                display: none;
+            }
+        }
+
+        .btn-dummy {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f0e3d0;
+            border-radius: 2rem;
+            padding: 0.3rem 1rem;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #503d22;
+            margin-top: 0.8rem;
+            cursor: default;
+        }
+
+        .stub-icon {
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
 
-<div class="school-header text-center">
-    <h1>JOEX HIGH SCHOOL
-      MAYUGE </h1>
-    <p> Motto:If one can i can
-        
-    Email: joexnk@gmail.com 
-    Tel: 0749918954</p>
-</div>
-
-<div class="container" style="max-width: 900px;">
-    
-    <div class="card mb-4 shadow-sm">
-        <div class="card-header bg-dark text-white">
-            <h5 class="mb-0">Latest Announcements</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-            Registration is ongoing 
-            <li class="list-group-item">
-                <div class="d-flex justify-content-between">
-                    <strong>We need to create room for all citizens to education</strong>
-                    <small class="text-muted">23/02/2026</small>
+<div class="ticket-container">
+    <div class="ticket">
+        <!-- LEFT SIDE: EVENT INFO & LINEUP -->
+        <div class="ticket-left">
+            <div class="promoter-badge">
+                <i class="fas fa-crown" style="margin-right: 6px;"></i> JOEX AND KENNY PROMOTIONS
+            </div>
+            <div class="event-title">
+                PENS DOWN PARTY<br>FESTIVAL 2026
+            </div>
+            <div class="festival-sub">
+                <i class="fas fa-pen-fancy"></i> THE ULTIMATE END-OF-YEAR CELEBRATION
+            </div>
+            
+            <div class="info-grid">
+                <div class="info-row">
+                    <i class="fas fa-calendar-alt"></i>
+                    <strong>DATE</strong> <span>Saturday, August 15, 2026</span>
                 </div>
-                <p class="mb-0 text-secondary">to be the leading 
-                https://github.com/users/joexnk-alt/projects/3/views/1?pane=info&statusUpdateId=181495</p>
-            </li>
-        for more information call
-            0749918954
-        </ul>
-    </div>
-
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Co-Curricular Activities</h5>
+                <div class="info-row">
+                    <i class="fas fa-clock"></i>
+                    <strong>TIME</strong> <span>2:00 PM – 2:00 AM (Gates open 1 PM)</span>
+                </div>
+                <div class="info-row">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <strong>VENUE</strong> <span>SUNSET HAVEN GROUNDS, AUSTIN, TX</span>
+                </div>
+                <div class="info-row">
+                    <i class="fas fa-ticket-alt"></i>
+                    <strong>ACCESS</strong> <span>General Admission • 18+ (ID Required)</span>
+                </div>
+            </div>
+            
+            <div class="lineup">
+                <p><i class="fas fa-head-side-headphones"></i> 🔥 ELECTRIC LINEUP 🔥</p>
+                <div class="artist-list">
+                    <span>JOEX (Live)</span>
+                    <span>KENNY B2B</span>
+                    <span>DJ BLISS</span>
+                    <span>THE STYLERS</span>
+                    <span>MISS VOX</span>
+                    <span>PEN$ DOWN ALLSTARS</span>
+                </div>
+            </div>
+            
+            <div class="extra-note">
+                <span><i class="fas fa-wine-bottle"></i> Full bar + Food trucks</span>
+                <span><i class="fas fa-hand-peace"></i> No refunds | Rain or shine</span>
+            </div>
         </div>
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-hover mb-0">
-                    <thead class="table-light">
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                    </th>
-                        </tr>
-                    </thead>
-                    <tbody>
         
-                        <tr>
-                            <td><strong></strong></td>
-                            <td>Football 
-                                Neyball
-                                Volleyball<span class="badge bg-info text-dark"></span></td>
-                            <td></td>
-                            <td> </td>
-                        </tr>
-                    
-                    </tbody>
-                </table>
+        <!-- RIGHT SIDE: QR + TICKET STUB DETAILS -->
+        <div class="ticket-right">
+            <div class="qr-wrapper">
+                <!-- dynamic QR code will be loaded here with ticket data -->
+                <img id="dynamicQR" class="qr-code-img" alt="Scan QR for event validation" src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=Placeholder">
+            </div>
+            <div class="scan-text">
+                <i class="fas fa-qrcode"></i> SCAN FOR ENTRY
+            </div>
+            
+            <div class="ticket-details">
+                <p><span class="label"><i class="fas fa-hashtag"></i> TICKET ID:</span> <span class="value">PD26-8F7K-9G2X</span></p>
+                <p><span class="label"><i class="fas fa-chair"></i> SECTION/ROW:</span> <span class="value">PENS DOWN PIT • GA+</span></p>
+                <p><span class="label"><i class="fas fa-dollar-sign"></i> PRICE:</span> <span class="value">$79.00 + fees (Early Owl)</span></p>
+                <p><span class="label"><i class="fas fa-tag"></i> GATE:</span> <span class="value">ENTRANCE 4 (NORTH PLAZA)</span></p>
+            </div>
+            
+            <div class="price-tag">
+                🎟️ ADMIT ONE · ALL ACCESS 🎟️
+            </div>
+            <div class="gate-info">
+                <i class="fas fa-shield-alt"></i> This ticket includes unlimited water stations & locker zone
+            </div>
+            <div class="btn-dummy">
+                <i class="fas fa-mobile-alt stub-icon"></i> DIGITAL TICKET · SHOW ON DEVICE OR PRINT
             </div>
         </div>
     </div>
-
+    <!-- tiny footer note -->
+    <div style="text-align: center; margin-top: 1rem; font-size: 0.7rem; color: #bdb28b; font-weight: 500;">
+        <i class="fas fa-check-circle"></i> JOEX & KENNY PROMOTIONS official ticket · pens down party 2026
+    </div>
 </div>
 
-<footer class="text-center mt-5 pb-4 text-muted">
-    <small>&copy; 2026 Joex High School Management System</small>
-</footer>
+<script>
+    (function() {
+        // Create unique, event-specific data for QR code -> represents secure validation.
+        // The QR will contain event details + unique ticket hash to appear authentic.
+        const eventTitle = "PENS DOWN PARTY FESTIVAL 2026";
+        const promoters = "JOEX & KENNY PROMOTIONS";
+        const ticketNumber = "PD26-8F7K-9G2X";
+        const eventDate = "AUG 15 2026";
+        const gate = "GATE 4 NORTH";
+        const seat = "GA+ PIT ACCESS";
+        
+        // building a rich string that can be scanned for check-in (like a ticket validation string)
+        const qrPayload = `EVENT:${eventTitle}|PROMO:${promoters}|TICKET:${ticketNumber}|DATE:${eventDate}|GATE:${gate}|SEAT:${seat}|UNIQUE:PD26#A92F`;
+        
+        // using qrserver API (free & reliable) to generate QR code dynamically with high contrast
+        const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=${encodeURIComponent(qrPayload)}&margin=2`;
+        
+        const qrImg = document.getElementById('dynamicQR');
+        if (qrImg) {
+            qrImg.src = qrApiUrl;
+            qrImg.alt = "QR code for Pens Down Festival 2026 entry validation";
+            // optional: add loading effect (already set)
+            qrImg.onerror = function() {
+                // fallback if API fails (very rare) - display a styled fallback canvas
+                this.onerror = null;
+                this.alt = "QR code temporarily unavailable, please show ticket id at gate";
+                this.style.backgroundColor = "#f0e3cf";
+                this.style.padding = "10px";
+                this.style.borderRadius = "12px";
+                this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f7f2e5'/%3E%3Ctext x='10' y='55' font-size='8' fill='%23855e2c'%3EPENS DOWN%3C/text%3E%3C/svg%3E";
+            };
+        }
+        
+        // Optional: extra console assurance for ticket dynamic (also can set title)
+        // Add subtle hover effect to ticket id tooltip? not needed, but adds nice micro-interaction.
+        const ticketIdSpan = document.querySelector('.ticket-details .value');
+        if (ticketIdSpan && ticketIdSpan.innerText.includes('PD26')) {
+            ticketIdSpan.setAttribute('title', 'Scan QR or show this code at gate');
+        }
+        
+        // dynamic year & additional interactivity for "Copy ticket id"? just for fun, but not needed.
+        // ensures that all ticket info remains coherent.
+        console.log("🎫 Pens Down Party 2026 digital ticket ready — powered by JOEX & KENNY PROMOTIONS");
+    })();
+</script>
 
+<!-- No external dependencies beyond fonts, FontAwesome, QR api – fully functional -->
 </body>
-</html>
+    </html>
